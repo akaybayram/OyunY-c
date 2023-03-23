@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "ana.h": "c",
-        "oyuncu.h": "c"
+        "oyuncu.h": "c",
+        "enet.h": "c",
+        "stdio.h": "c",
+        "raylib.h": "c",
+        "plswindows.h": "c"
     }
 }

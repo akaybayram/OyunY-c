@@ -1,6 +1,6 @@
 #ifndef KUTUP_ANA_H__
 #define KUTUP_ANA_H__
- 
+
 #include <raylib.h>
 
 #define EKRAN_GENISLIGI 800
