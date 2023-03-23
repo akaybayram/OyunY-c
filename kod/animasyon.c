@@ -21,8 +21,8 @@ Animasyon animasyon_uret(AnimasyonVeri* veri, Vector2 baslangic_bitis_kare, floa
     Animasyon s = {0};
     s.veri = veri;
     s.kare_aralik = baslangic_bitis_kare;
-    s.sure_katsayisi = sure / (baslangic_bitis_kare.y - baslangic_bitis_kare.x);
-    s.toplam_kare_sayisi = baslangic_bitis_kare.y - baslangic_bitis_kare.x;
+    s.sure_katsayisi = sure / (baslangic_bitis_kare.y + 1 - baslangic_bitis_kare.x);
+    s.toplam_kare_sayisi = baslangic_bitis_kare.y + 1 - baslangic_bitis_kare.x;
 
     return s;
 }

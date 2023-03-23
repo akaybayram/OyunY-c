@@ -11,8 +11,8 @@ void oyuncu_ayarla(OyuncuTip* oyuncu)
 {
     oyuncu->olcek = 2.0f;
     v = animasyon_veri_uret("cizimler/ast.png", oyuncu->olcek, (Vector2){8, 2});
-    a[OYUNCU_DURUM_DURMA] = animasyon_uret(&v, (Vector2){0, 8}, 0.8);
-    a[OYUNCU_DURUM_KOSMA] = animasyon_uret(&v, (Vector2){8, 16}, 0.8);
+    a[OYUNCU_DURUM_DURMA] = animasyon_uret(&v, (Vector2){0, 7}, 0.8);
+    a[OYUNCU_DURUM_KOSMA] = animasyon_uret(&v, (Vector2){8, 15}, 0.8);
     oyuncu->boyut.x = v.kare_boyut.x * oyuncu->olcek;
     oyuncu->boyut.y = v.kare_boyut.y * oyuncu->olcek;
     oyuncu->renk.r = 255;
