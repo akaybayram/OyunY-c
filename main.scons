@@ -1,32 +1,33 @@
 import os
 import sys
+import subprocess
 
 program_ismi = '../OyunY'
-c_derleme_bayraklari = '-g -Wall -Wextra -Werror'
-kod_dosyalari = [ Glob('kod/*.c'), 'giris.c']
-kutuplar = ['kutup/', 'lib/include/']
+c_derleme_bayraklari = '-g -Wall -Wextra -Werror -Wno-sign-compare'
+kod_dosyalari = [Glob('kod/*.c'), 'giris.c']
+kutuplar = ['kutup', 'lib/raylib/src']
 kutuphaneler = ['raylib', 'm']
-lib_path = ''
+lib_path = 'lib/raylib/src'
+
+if not os.path.exists('../lib/raylib/src/libraylib.a'):
+    subprocess.call(['make', 'PLATFORM=PLATFORM_DESKTOP'], cwd='../lib/raylib/src')
 
 if sys.platform == 'cygwin' or sys.platform == 'win32':
     print(sys.platform + " ortamina gore ayarlamalar yapiliyor!")
-    kutuphaneler.append('winmm ole32 oleaut32 imm32 version gdi32 ws2_32'.split()) 
-    lib_path = 'lib/source/win/'
+    kutuphaneler.append('winmm ole32 \
+                         oleaut32 imm32 \
+                         version gdi32 \
+                         ws2_32'.split())
     c_derleme_bayraklari += ' -Wno-unknown-pragmas'
-else:
-    lib_path = 'lib/source/linux/'
 
-genel=Environment(CC='gcc', CCFLAGS='-Wall -Wextra',\
-				  ENV = os.environ,\
-                  COMPILATIONDB_USE_ABSPATH=False)
+genel = Environment(CC='gcc', CCFLAGS='-Wall -Wextra',
+				  ENV = os.environ,
+                  COMPILATIONDB_USE_ABSPATH=True)
 
 genel.Tool('compilation_db')
 cdb = genel.CompilationDatabase('../compile_commands.json')
 Alias('cdb', cdb)
 
-genel.Program(target = program_ismi,          \
-              source = kod_dosyalari,         \
-              CCFLAGS = c_derleme_bayraklari, \
-              LIBS = kutuphaneler,            \
-              LIBPATH = lib_path,             \
-              CPPPATH = kutuplar)
+genel.Program(target = program_ismi, source = kod_dosyalari, CCFLAGS =
+              c_derleme_bayraklari, LIBS = kutuphaneler, LIBPATH =
+              lib_path, CPATH = kutuplar, CPPPATH = kutuplar)

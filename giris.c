@@ -25,6 +25,6 @@ int main()
     	oyun_ciz();
     	EndDrawing();
   	}
- 	
+
 	return 0;
 }
